@@ -9,7 +9,7 @@ import { TimeRange } from "../dashboard/Dashboard";
 const TopGrid = ({ time }: { time: TimeRange }) => {
   const [expanded, setExpanded] = useState(2);
 
-  const { topTracks, topArtists, topGenres } = useGetTopItems(time);
+  const { topTracks, topArtists } = useGetTopItems(time);
   return (
     <div style={{ height: "57vh" }}>
       <div className="flex flex-row items-center justify-center p-4">
@@ -66,7 +66,7 @@ const GridItem = ({
     >
       <h1 className="p-2 font-bold text-2xl">{label}</h1>
       <div
-        className={`p-2 rounded-xl bg-zinc-800 border-zinc-400 border-2 w-full h-full`}
+        className={`rounded-xl bg-zinc-800 border-zinc-400 border-2 w-full h-full`}
       >
         {children}
       </div>

@@ -1,6 +1,7 @@
 import { signOut } from "next-auth/react";
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { FC, useState } from "react";
 import TopGrid from "../topGrid";
+import TermButtons from "./TermButtons";
 import { motion } from "framer-motion";
 
 interface DashboardProps {
@@ -18,52 +19,20 @@ const Dashboard: FC<DashboardProps> = ({ name }) => {
           {Boolean(name.length) ? `Hi there, ${name} ` : "Hi there!"}{" "}
         </h1>
 
-        <button
-          className="bg-green-600 px-4 h-10 py-2  hover:shadow-md hover:shadow-green-800 transition-shadow ease-in-out rounded-xl text-black"
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          className="bg-spotify-green px-4 h-10 py-2 rounded-3xl"
           onClick={() => signOut()}
         >
           Sign out
-        </button>
+        </motion.button>
       </div>
-      <h2 className="px-10 text-2xl">
+      <h2 className="px-10 text-2xl text-zinc-400">
         Let&apos;s check out your listening trends
       </h2>
       <TopGrid time={time} />
       <TermButtons time={time} setTime={setTime} />
-    </div>
-  );
-};
-
-const TermButtons = ({
-  time,
-  setTime,
-}: {
-  time: TimeRange;
-  setTime: Dispatch<SetStateAction<TimeRange>>;
-}) => {
-  return (
-    <div className="h-10 items-start mt-20 flex justify-center">
-      <button onClick={() => setTime("short_term")} className="mx-10">
-        <p>This month</p>
-        <motion.div
-          animate={{ opacity: time === "short_term" ? 1 : 0 }}
-          className="h-1 bg-green-600"
-        />
-      </button>
-      <button onClick={() => setTime("medium_term")} className="mx-10">
-        <p>Past 6 months</p>
-        <motion.div
-          animate={{ opacity: time === "medium_term" ? 1 : 0 }}
-          className="h-1 bg-green-600"
-        />
-      </button>
-      <button onClick={() => setTime("long_term")} className="mx-10">
-        <p>All time</p>
-        <motion.div
-          animate={{ opacity: time === "long_term" ? 1 : 0 }}
-          className="h-1 bg-green-600"
-        />
-      </button>
     </div>
   );
 };
