@@ -1,6 +1,6 @@
 import { signOut } from "next-auth/react";
 import { FC, useState } from "react";
-import TopGrid from "../TopGrid";
+import TopGrid from "../topGrid";
 import TermButtons from "./TermButtons";
 import { motion } from "framer-motion";
 
